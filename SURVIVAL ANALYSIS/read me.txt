@@ -1,0 +1,71 @@
+# Customer Churn Analysis using Survival Models and Machine Learning
+
+## 1. Project Overview
+
+This project provides a comprehensive, dual-perspective analysis of the Telco Customer Churn dataset. The primary goal is to move beyond simple churn prediction and develop a deeper understanding of customer behavior over time.
+
+To achieve this, we employ two distinct methodologies:
+1.  **Survival Analysis:** To model the *time until a customer churns* and identify the key factors that influence their "survival" as a customer.
+2.  **Machine Learning:** To build a high-performance classification model that can accurately *predict whether* a customer will churn.
+
+By combining these approaches, we can generate both strategic, long-term insights (from survival models) and tactical, immediate predictions (from classification models).
+
+## 2. Dataset
+
+The analysis is conducted on the popular **Telco Customer Churn** dataset, originally provided by IBM and available on Kaggle.
+
+-   **Source:** [Kaggle - Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
+
+The dataset contains customer information, subscribed services, account details, and a target variable indicating whether the customer has churned.
+
+## 3. Project Workflow & Methodology
+
+The project follows a structured, end-to-end data science workflow:
+
+### 3.1 Data Cleaning and Preprocessing
+-   Corrected data types, converting `TotalCharges` to a numeric format and `Churn` to a binary indicator (1/0).
+-   Handled missing values that arose from data type conversion.
+
+### 3.2 Exploratory Data Analysis (EDA)
+-   Visualized the relationship between key categorical features (like `Contract` type and `PaymentMethod`) and churn to identify initial patterns and inform subsequent modeling.
+
+### 3.3 Survival Analysis
+-   **Kaplan-Meier Curves:** Plotted survival functions to visualize the overall probability of a customer remaining subscribed over time. This was then segmented by `Contract` type to reveal dramatic differences in customer loyalty.
+-   **Cox Proportional Hazards (CPH) Model:** Implemented a multivariate CPH model to quantify the impact of various features on the "hazard" of churning. This identified the most significant drivers of long-term customer risk.
+
+### 3.4 Machine Learning for Prediction
+-   **Baseline Model (Logistic Regression):** Established a baseline performance using a simple and interpretable Logistic Regression model. Feature scaling and stratified splitting were used for robust training.
+-   **Advanced Model (XGBoost):** Implemented a state-of-the-art XGBoost classifier to improve predictive performance.
+-   **Robust Evaluation:** Used **5-fold Stratified Cross-Validation** to obtain a reliable estimate of the XGBoost model's accuracy, precision, and, most importantly, recall.
+
+## 4. Key Findings & Results
+
+### 4.1 Insights from Survival Analysis (The "Why" and "When")
+-   The CPH model achieved an excellent **Concordance score of 0.90**, indicating strong predictive power regarding customer risk over time.
+-   **Contract type** was identified as the most critical factor for long-term retention. A **Two-year contract reduces the risk of churn by 65%** compared to a month-to-month contract.
+-   Customers with **Fiber optic** internet service and those paying by **Electronic check** showed a significantly higher risk of churning at any given time.
+
+### 4.2 Insights from Machine Learning (The "If")
+-   The XGBoost model significantly outperformed the baseline, achieving a robust cross-validated **mean recall of 67.2%** (compared to 57% for Logistic Regression). This means it is much more effective at identifying customers who will actually churn.
+-   The most important features for *predicting* churn were **`MonthlyCharges`**, **`TotalCharges`**, and **`tenure`**.
+
+## 5. Technologies Used
+
+-   **Language:** Python 3
+-   **Libraries:**
+    -   Pandas (Data Manipulation)
+    -   Matplotlib & Seaborn (Data Visualization)
+    -   Lifelines (Survival Analysis)
+    -   Scikit-learn (Machine Learning - Logistic Regression, Preprocessing)
+    -   XGBoost (Advanced Classification Model)
+-   **Environment:** Jupyter Notebook
+
+## 6. How to Run
+
+1.  Clone this repository to your local machine.
+2.  Ensure you have Python and the required libraries installed. You can install them using pip:
+    ```bash
+    pip install pandas matplotlib seaborn lifelines scikit-learn xgboost jupyterlab
+    ```
+3.  Download the dataset from the [Kaggle link](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) and place the `WA_Fn-UseC_-Telco-Customer-Churn.csv` file in the same directory as the notebook.
+4.  Launch Jupyter Notebook or JupyterLab and open the `.ipynb` file to view and run the analysis.
