@@ -1,0 +1,41 @@
+# Options Pricing and Risk Analysis Toolkit
+
+This repository contains a comprehensive Python-based toolkit for the pricing and risk analysis of European-style options. It implements two fundamental pricing methodologies—the analytical Black-Scholes model and a computational Monte Carlo simulation—and provides a deep dive into the sensitivity analysis of options through the "Greeks."
+
+This project serves as a foundational demonstration of key concepts in quantitative finance, computational methods, and risk management.
+
+## Key Features
+
+- **Dual Pricing Models**:
+  - **Black-Scholes Model**: Implementation of the industry-standard closed-form solution for pricing European options.
+  - **Monte Carlo Simulation**: A stochastic approach that simulates thousands of potential price paths to determine the option's value, validating the Black-Scholes results.
+- **Comprehensive Risk Analysis (The Greeks)**:
+  - Calculation of **Delta**, **Gamma**, **Vega**, and **Theta** to quantify the option's sensitivity to underlying price, volatility, and time.
+- **Dynamic Behavior Visualization**:
+  - A 2x2 dashboard of plots that visually demonstrates how the option's price and its Greeks change dynamically as the underlying stock price fluctuates.
+
+## Core Concepts & Skills Demonstrated
+
+- **Financial Engineering**:
+  - Black-Scholes-Merton formula
+  - Geometric Brownian Motion for asset path simulation
+  - Risk-Neutral Pricing
+  - Intrinsic vs. Extrinsic (Time) Value
+  - Option Greeks (Δ, Γ, ν, Θ) for hedging and risk management
+- **Computational Finance**:
+  - Monte Carlo methods for derivative pricing
+- **Python for Data Science**:
+  - **NumPy**: For efficient, vectorized numerical computations.
+  - **SciPy**: For statistical functions, specifically the cumulative distribution function (CDF) of the normal distribution.
+  - **Matplotlib**: For creating high-quality, insightful data visualizations.
+
+## Visual Analysis of Option Dynamics
+
+The final output of the analysis is a powerful visualization that captures the complex, non-linear behavior of options.
+
+
+These plots clearly illustrate:
+1.  The non-linear payoff profile of calls and puts.
+2.  The "S-curve" of Delta, which represents the option's changing exposure to the underlying asset.
+3.  The bell-shaped curves of Gamma and Vega, which peak at-the-money, indicating the point of maximum price instability and sensitivity to volatility.
+
