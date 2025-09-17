@@ -1,0 +1,69 @@
+# Quantitative Portfolio Optimization & Backtesting
+
+**Author:** [Your Name]  
+**LinkedIn:** [Your LinkedIn Profile URL]  
+**GitHub:** [Your GitHub Profile URL]
+
+---
+
+## 1. Project Overview
+
+This project implements the principles of Modern Portfolio Theory (MPT) to construct, analyze, and backtest an optimal investment portfolio. Starting with historical stock data for a selection of blue-chip companies, we use mathematical optimization to identify the portfolio with the maximum risk-adjusted return (Sharpe Ratio).
+
+Subsequently, the project conducts a comprehensive risk analysis using industry-standard metrics like Value at Risk (VaR) and Conditional VaR (CVaR). The core of the project is a custom-built backtesting engine that simulates the performance of our dynamic rebalancing strategy against a passive benchmark (S&P 500 ETF - SPY). The final output provides a detailed, data-driven evaluation of the strategy's real-world viability.
+
+---
+
+## 2. Key Concepts & Methodology
+
+*   **Modern Portfolio Theory (MPT):** The financial framework for constructing diversified portfolios to maximize returns for a given level of risk.
+*   **Efficient Frontier:** The set of optimal portfolios that offer the highest expected return for a defined level of risk.
+*   **Sharpe Ratio:** A measure of risk-adjusted return, used as the primary metric for our optimization goal.
+*   **Mathematical Optimization:** Using `scipy.optimize` to precisely find the portfolio weights that maximize the Sharpe Ratio, offering a deterministic solution over Monte Carlo simulation.
+*   **Risk Management:** Calculating Historical Value at Risk (VaR) and Conditional Value at Risk (CVaR) to quantify potential downside risk in intuitive, monetary terms.
+*   **Backtesting:** Building a dynamic simulation engine to test the strategy over a historical period with periodic rebalancing, allowing for an objective assessment against a benchmark.
+
+---
+
+## 3. Technologies Used
+
+*   **Python 3.x**
+*   **Pandas:** For data manipulation and time-series analysis.
+*   **NumPy:** For numerical and matrix operations.
+*   **yfinance:** To download historical stock market data from Yahoo Finance.
+*   **Matplotlib:** For data visualization.
+*   **SciPy:** For the core mathematical optimization algorithm (`SLSQP`).
+
+---
+
+## 4. Project Walkthrough & Results
+
+### Step A: Data Acquisition and Preparation
+
+The project begins by fetching five years of historical daily adjusted closing prices for a diversified portfolio of five stocks: `AAPL` (Technology), `PG` (Consumer Staples), `JNJ` (Healthcare), `JPM` (Financials), and `XOM` (Energy). These prices are then converted into daily logarithmic returns for financial modeling.
+
+![Historical Prices](historical_prices.png)
+
+### Step B: Optimization and the Efficient Frontier
+
+Using `scipy.optimize`, we solve for the portfolio weights that maximize the Sharpe Ratio. This process is visualized by the Efficient Frontier, which maps all possible risk-return combinations. The optimizer pinpoints the "Optimal Risky Portfolio" (Maximum Sharpe Ratio) and the "Global Minimum Variance" portfolio.
+
+![Efficient Frontier](efficient_frontier.png)
+
+### Step C: Advanced Risk Analysis (VaR & CVaR)
+
+To better understand the downside risk, we calculate the Value at Risk (VaR) and Conditional Value at Risk (CVaR) for the optimized portfolio. This analysis translates the abstract concept of volatility into a concrete monetary estimate of potential losses.
+
+```text
+================================================================================
+RISK ANALYSIS: Value at Risk (VaR) & Conditional VaR (CVaR)
+================================================================================
+
+Analysis for a hypothetical investment of $100,000.00 at a 95% confidence level:
+
+Daily Historical VaR (95%): -1.89%
+This means we are 95% confident that the daily loss will not exceed $1,890.82.
+
+Daily Historical CVaR (95%): -2.56%
+This means that on the worst 5% of days, the *average* expected loss is $2,564.88.
+--------------------------------------------------------------------------------
