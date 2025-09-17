@@ -1,0 +1,23 @@
+# Factor Investing Analysis: Deconstructing Stock Returns with Fama-French Models
+
+## 1. Project Overview
+
+This repository contains a quantitative analysis project that dissects and explains the returns of two distinct stocks: **Tesla (TSLA)**, a quintessential growth stock, and **Ford (F)**, a classic value stock.
+
+The primary goal is to demonstrate the superior explanatory power of the **Fama-French 3-Factor and 5-Factor models** over the traditional Capital Asset Pricing Model (CAPM). By running multiple linear regressions, the analysis quantifies each stock's exposure (beta) to various systematic risk factors, effectively creating a "risk DNA" profile for each company.
+
+The entire analysis, including data acquisition, statistical modeling, visualization, and detailed interpretation of the findings, is contained within the Jupyter Notebook: `Factor_Investing_Analysis.ipynb`.
+
+---
+
+## 2. Key Findings & Visualizations
+
+The analysis empirically confirms the theoretical foundations of factor investing.
+
+#### 1. Fama-French Models are Superior to CAPM
+The models incorporating Size (SMB), Value (HML), Profitability (RMW), and Investment (CMA) factors explain a significantly higher percentage of stock return variance compared to the single-factor CAPM.
+
+
+#### 2. Quantifying the "Growth" vs. "Value" Profile
+The 5-Factor model's betas provide a clear, data-driven profile of each stock. The analysis confirms **Tesla's** characteristics as a high-beta, growth-oriented stock (negative HML exposure) and **Ford's** as a classic value stock (positive HML exposure).
+
