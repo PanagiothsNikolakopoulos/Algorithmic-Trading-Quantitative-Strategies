@@ -1,0 +1,58 @@
+# Project 6: Sentiment Analysis for Stock Price Prediction
+
+This project explores the use of alternative data—specifically, the sentiment of Elon Musk's tweets—to predict the daily price direction of Tesla ($TSLA) stock. It serves as a comprehensive case study in data acquisition, Natural Language Processing (NLP), feature engineering, and rigorous time-series model evaluation.
+
+
+## Table of Contents
+1. [Objective](#objective)
+2. [Data Sources](#data-sources)
+3. [Methodology](#methodology)
+4. [Modeling & Evaluation](#modeling--evaluation)
+5. [Key Findings](#key-findings)
+6. [How to Run](#how-to-run)
+7. [Future Work](#future-work)
+
+---
+
+### Objective
+The primary goal was to investigate whether a quantifiable measure of public sentiment, derived from Elon Musk's Twitter activity, could serve as a predictive signal for the next day's price movement of $TSLA stock.
+
+---
+
+### Data Sources
+*   **Financial Data:** Daily historical stock prices (Open, High, Low, Close, Volume) for $TSLA were downloaded using the `yfinance` library for the period of **January 1, 2020, to December 31, 2023**.
+*   **Alternative Data:** A comprehensive dataset of Elon Musk's tweets for the period of **January 1, 2010, to April 30, 2025**. was acquired from Kaggle using the `kagglehub` API.
+
+---
+
+### Methodology
+The project followed a structured data science workflow:
+
+1.  **Data Preprocessing & NLP:**
+    *   Tweets were cleaned by removing URLs, user mentions, and hashtags.
+    *   The **VADER (Valence Aware Dictionary and sEntiment Reasoner)** model was used to assign a compound sentiment score (from -1.0 to +1.0) to each tweet.
+
+2.  **Feature Engineering:**
+    *   The individual tweet scores were aggregated to create an `avg_sentiment` score for each day.
+    *   This sentiment time-series was then merged with the financial data.
+    *   A binary target variable, `Price_Direction`, was created (1 for an upward price move, 0 otherwise).
+
+
+### Modeling & Evaluation
+Two models were trained and evaluated to assess the predictive power of the sentiment feature:
+
+1.  **Baseline Model (RandomForest):**
+    *   An initial model was trained, achieving an accuracy of **48.97%**. This was slightly below the baseline accuracy of 52.58% (achieved by always predicting the majority class).
+
+2.  **Optimized Model (XGBoost with GridSearchCV):**
+    *   A more advanced XGBoost model was implemented with hyperparameter tuning using `GridSearchCV` and a time-series-aware cross-validation (`TimeSeriesSplit`).
+    *   This model showed a marginal improvement to **49.48% accuracy** but still failed to outperform the baseline. Analysis revealed a strong bias towards predicting the majority class.
+
+
+
+### Key Findings
+
+1.  **Sentiment is a Noisy Signal:** The primary conclusion is that the average daily sentiment from tweets, when used as a standalone feature, is not a reliable predictor of stock price direction.
+2.  **Visualization Provides Crucial Context:** While the quantitative models were not successful, a visual analysis mapping extreme tweets onto the price chart proved highly insightful. It revealed a potential correlation between clusters of polarized tweets and periods of high market volatility, offering a qualitative perspective that the models missed.
+3.  **Methodology over Results:** The project highlights a robust and realistic workflow, from data acquisition to critical model evaluation and interpretation. The process of identifying and solving challenges (like tweets on non-trading days) is a key demonstration of practical data science skills.
+
