@@ -1,0 +1,36 @@
+FORECASTING BTC PRICE AND VOLATILITY WITH LSTM & GARCH
+
+OVERVIEW
+This project analyzes Bitcoin (BTC-USD) time-series data to forecast both price and volatility. It compares a classic econometric model (GARCH) against a modern deep learning model (LSTM) to demonstrate a full-stack approach to quantitative analysis.
+
+OBJECTIVE
+1. Model and forecast the volatility (risk) of Bitcoin's daily returns using a GARCH model.
+2. Forecast the next-day closing price of Bitcoin using an LSTM neural network.
+3. Compare the strengths and use cases of each approach.
+
+DATA SOURCE
+Daily historical price data for Bitcoin (BTC-USD) from January 1, 2017, to December 31, 2023, acquired via the yfinance library.
+
+METHODOLOGY & MODELS
+
+Part A: GARCH for Volatility Forecasting
+We analyzed log returns and identified volatility clustering. A GARCH(1,1) model was fitted, and its parameters were found to be highly statistically significant. The model successfully captured the changing risk regimes of the market.
+
+Part B: LSTM for Price Forecasting
+Closing prices were scaled and transformed into sequences (60 days of history to predict the next day). A stacked LSTM network was built and trained. The model showed a good fit with no significant overfitting.
+
+KEY FINDINGS
+
+GARCH(1,1)
+- Task: Volatility Forecasting
+- Result: Successfully captured volatility clustering and provided statistically significant risk estimates.
+- Use Case: Risk Management, Options Pricing, Hedging.
+
+LSTM Network
+- Task: Price Forecasting
+- Result: Effectively predicted the long-term price trend with a Test RMSE of ~$1171.
+- Use Case: Trend Following Strategies, Directional Analysis.
+
+
+TECH STACK
+Python, Pandas, NumPy, yfinance, arch, TensorFlow, Keras, scikit-learn, Matplotlib.
